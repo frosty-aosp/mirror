@@ -17,8 +17,9 @@ except KeyError:
     print("Please set the GHUSER and GHTOKEN environment variables")
     exit(1)
 
-orgName = "AICP"
-org = Github(u, p).get_user(orgName)
+orgNames = ["frosty-aosp", "frosty-devices"]
+
+repos = []
 
 file = open("default.xml", "w")
 file.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -32,10 +33,11 @@ file.write('           remote="github"\n')
 file.write('           sync-j="4" />\n')
 file.write("\n")
 
-repos = []
+for orgName in orgNames:
+    org = Github(u, p).get_user(orgName)
 
-for repo in org.get_repos():
-    repos.append(repo.full_name)
+    for repo in org.get_repos():
+        repos.append(repo.full_name)
 
 for repo in sorted(repos):
     file.write('  <project name="' + repo + '" />\n')
