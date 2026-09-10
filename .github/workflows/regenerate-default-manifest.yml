@@ -1,0 +1,65 @@
+name: Regenerate default manifest
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: regenerate-default-manifest
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Generate default.xml
+        env:
+          # A fine-grained PAT is required only when either organization has
+          # private repositories that must be included in the manifest.
+          GH_TOKEN: ${{ secrets.MIRROR_REGEN_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          set -o pipefail
+
+          {
+            printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?>'
+            printf '\n'
+            printf '%s\n' '<manifest>'
+            printf '\n'
+            printf '%s\n' '  <remote  name="github"'
+            printf '%s\n' '           fetch=".." />'
+            printf '\n'
+            printf '%s\n' '  <default revision="main"'
+            printf '%s\n' '           remote="github"'
+            printf '%s\n' '           sync-j="4" />'
+            printf '\n'
+
+            for organization in frosty-aosp frosty-devices; do
+              gh api --paginate "/orgs/${organization}/repos?type=all&per_page=100" \
+                --jq '.[].full_name'
+            done | sort -u | while IFS= read -r repository; do
+              printf '  <project name="%s" />\n' "$repository"
+            done
+
+            printf '%s\n' '</manifest>'
+          } > default.xml
+
+      - name: Commit updated manifest
+        run: |
+          if git diff --quiet -- default.xml; then
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add default.xml
+          git commit -m "Regenerate default manifest"
+          git push origin HEAD:main
