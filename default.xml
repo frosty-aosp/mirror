@@ -51,6 +51,7 @@
   <project name="frosty-aosp/tools_metalava" />
   <project name="frosty-aosp/vendor_frosty" />
   <project name="frosty-devices/device_google_bluejay" />
+  <project name="frosty-devices/device_google_pantah" />
   <project name="frosty-devices/device_motorola_miami" />
   <project name="frosty-devices/device_motorola_sm6375-common" />
   <project name="frosty-devices/device_nothing_Tetris" />
