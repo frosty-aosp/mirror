@@ -10,19 +10,16 @@ If you want to sync the source quickly but want it to be up-to-date without sync
 
 ## Updating the mirror manifest
 
-To update the mirror, use the `mirror-regen.py` script.  
-Please make sure you set the environment variables before using the script:
+The [default-manifest workflow](./.github/workflows/regenerate-default-manifest.yml)
+regenerates `default.xml` daily at 00:00 UTC and commits any changes directly to
+`main`. It can also be run manually from the repository's Actions tab.
 
-`GHUSER` contains a valid GitHub Username and  
-`GHTOKEN` contains a matching GitHub Personal Access Token  
-  
-To set these environment variables, run these commands in your terminal window:  
+The workflow uses its built-in `GITHUB_TOKEN` to list public repositories and
+push the generated manifest. If either organization contains private
+repositories that must be included, configure a `MIRROR_REGEN_TOKEN` repository
+secret with a fine-grained personal access token that has read access to both
+organizations. The workflow still uses `GITHUB_TOKEN` to push to this
+repository.
 
-```
-export GHUSER="<Your Username>"
-export GHTOKEN="<Your Token>"
-```
-
-(You can obtain a GitHub Personal Access Token [here](https://github.com/settings/tokens))
-
-**WARNING:** Please make sure no repositories have been removed before pushing a manifest change to Gerrit. A poor network connection could result in an incomplete manifest.
+The workflow fails if GitHub cannot list the organizations' repositories, so it
+will not commit a partial manifest because of an API or network error.
