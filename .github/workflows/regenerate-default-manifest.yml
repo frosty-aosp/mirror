@@ -31,7 +31,6 @@ jobs:
 
           {
             printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?>'
-            printf '\n'
             printf '%s\n' '<manifest>'
             printf '\n'
             printf '%s\n' '  <remote  name="github"'
