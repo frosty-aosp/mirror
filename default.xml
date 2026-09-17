@@ -19,6 +19,7 @@
   <project name="frosty-aosp/frameworks_libs_systemui" />
   <project name="frosty-aosp/frameworks_native" />
   <project name="frosty-aosp/frameworks_opt_telephony" />
+  <project name="frosty-aosp/frosty_scripts" />
   <project name="frosty-aosp/libcore" />
   <project name="frosty-aosp/manifest" />
   <project name="frosty-aosp/mirror" />
