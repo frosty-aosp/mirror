@@ -15,6 +15,9 @@
   <project name="frosty-aosp/build_make" />
   <project name="frosty-aosp/build_soong" />
   <project name="frosty-aosp/device_frosty_sepolicy" />
+  <project name="frosty-aosp/external_federated-compute" />
+  <project name="frosty-aosp/external_flatbuffers" />
+  <project name="frosty-aosp/external_tensorflow" />
   <project name="frosty-aosp/frameworks_base" />
   <project name="frosty-aosp/frameworks_libs_systemui" />
   <project name="frosty-aosp/frameworks_native" />
