@@ -54,6 +54,7 @@
   <project name="frosty-aosp/system_tools_aidl" />
   <project name="frosty-aosp/tools_metalava" />
   <project name="frosty-aosp/vendor_frosty" />
+  <project name="frosty-devices/device_fairphone_FP6" />
   <project name="frosty-devices/device_google_bluejay" />
   <project name="frosty-devices/device_google_pantah" />
   <project name="frosty-devices/device_motorola_miami" />
