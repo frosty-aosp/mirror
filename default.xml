@@ -23,6 +23,7 @@
   <project name="frosty-aosp/frameworks_native" />
   <project name="frosty-aosp/frameworks_opt_telephony" />
   <project name="frosty-aosp/frosty_scripts" />
+  <project name="frosty-aosp/jenkins" />
   <project name="frosty-aosp/libcore" />
   <project name="frosty-aosp/manifest" />
   <project name="frosty-aosp/mirror" />
@@ -57,6 +58,7 @@
   <project name="frosty-devices/device_fairphone_FP6" />
   <project name="frosty-devices/device_google_bluejay" />
   <project name="frosty-devices/device_google_pantah" />
+  <project name="frosty-devices/device_google_panther" />
   <project name="frosty-devices/device_motorola_miami" />
   <project name="frosty-devices/device_motorola_sm6375-common" />
   <project name="frosty-devices/device_nothing_Tetris" />
